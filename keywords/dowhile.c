@@ -29,7 +29,7 @@ int main(void) {
 	int a=3;
 	do {
 		printf("Value of a: %d\n",a);
-	} while (a != 3);
+	} while (a != 3); /* Don't forget the semicolon here */
 
 	return 0;
 }

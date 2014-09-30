@@ -35,3 +35,11 @@ int main(void) {
 	printf("Value of 'a' outside if block  %d\n",a);
 	return 0;
 }
+
+/* 
+Output:
+parthiban@ubuntu:~/git/penguintux/workspace/C/C/keywords$ gcc -Wall -Wextra -g3 -o ./bin/auto ./auto.c 
+parthiban@ubuntu:~/git/penguintux/workspace/C/C/keywords$ ./bin/auto 
+Value of 'a' inside if block 5
+Value of 'a' outside if block  10
+*/

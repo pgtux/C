@@ -52,3 +52,16 @@ int main(void) {
 	}
 	return 0;
 }
+
+
+/*
+Output:
+parthiban@ubuntu:~/git/penguintux/workspace/C/C/keywords$ gcc -Wall -Wextra -g3 -o ./bin/break ./break.c 
+parthiban@ubuntu:~/git/penguintux/workspace/C/C/keywords$ ./bin/break 
+Looping at 1
+Looping at 2
+Looping at 3
+Looping at 4
+Looping at 5
+Will be breaking here
+*/
