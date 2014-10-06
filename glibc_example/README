@@ -1,0 +1,4 @@
+Comparison should be directly between API and system call for 'file management'
+
+- strace for system call backtrace
+- API functions can be understood with pprof and gprof
