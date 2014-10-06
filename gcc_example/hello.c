@@ -2,7 +2,7 @@
  * gcc_example/hello.c
  * Sample code to compile with GCC at various stages for better understanding
  * - This code doesn't include anything other then main() function
- * - Find the complete details on compilation in 'End of this Document'
+ * - Find the complete details on compilation in 'README'
  * 
  * Author: Parthiban Nallathambi <parthiban@penguintux.co.in>
  *
@@ -23,42 +23,13 @@
  *
  */
 
+/*
+ * /usr/include/stdio.h : is included for using 'printf' defined in glibc
+ */
+
+#include <stdio.h>
+
 int main(void) {
+	printf("Hello world\n");
 	return 0;
 }
-
-/*
- * # Preprocessed stage
- * gcc -Wall -Wextra -g3 -E ./hello.c
- *
- * - Stopping at preprocessed stage
- * - This throws the output in stdout
- *
- * gcc -Wall -Wextra -g3 -E ./hello.c >./hello.i
- *
- * # Compiler stage
- * gcc -Wall -Wextra -g3 -S ./hello.c
- *
- * - Stopping at compilation stage
- * - This saves assembler code in 'hello.s'
- *
- * # Assembly stage
- * gcc -Wall -Wextra -g3 -c ./hello.c
- *
- * - Stopping at assembly stage
- * - This saves the object code in 'hello.o'
- * - Link stage is not at this step
- *
- * # Linking stage
- * gcc -Wall -Wextra -g3 -o ./hello ./hello.c
- *
- * - Executable binary file in ELF format is generated
- * - To run this program simply run "./hello"
- * - Notice the file permission : set with executable bit on
- *
- *
- * # All staging at one place
- * - To save all the intermediate files at one step '-save-temps' switch can be used
- *
- * gcc -Wall -Wextra -g3 -save-temps -o ./hello ./hello.c
- */

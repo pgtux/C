@@ -1,0 +1,49 @@
+
+Options:
+========
+
+-Wall : Enables all the warning levels. Most of the time we need to check the warnings with at most care.
+-Wextra: Few warning levels are not enabled with '-Wall', this adds those.
+
+For sure 'man gcc' is the right place to check what is added under '-Wall' and '-Wextra'
+
+-g3: Debug level 3. g is enough (by defaults to g2). At least for me, 'g3' is free of cost to show more for MACROS as well.
+
+/*
+ * # Preprocessed stage
+ * gcc -Wall -Wextra -g3 -E ./hello.c
+ *
+ * - Stopping at preprocessed stage
+ * - This throws the output in stdout
+ *
+ * gcc -Wall -Wextra -g3 -E ./hello.c >./hello.i
+ *
+ * # Compiler stage
+ * gcc -Wall -Wextra -g3 -S ./hello.c
+ *
+ * - Stopping at compilation stage
+ * - This saves assembler code in 'hello.s'
+ *
+ * # Assembly stage
+ * gcc -Wall -Wextra -g3 -c ./hello.c
+ *
+ * - Stopping at assembly stage
+ * - This saves the object code in 'hello.o'
+ * - Link stage is not at this step
+ *
+ * # Linking stage
+ * gcc -Wall -Wextra -g3 -o ./hello ./hello.c
+ *
+ * - Executable binary file in ELF format is generated
+ * - To run this program simply run "./hello"
+ * - Notice the file permission : set with executable bit on
+ *
+ *
+ * # All staging at one place
+ * - To save all the intermediate files at one step '-save-temps' switch can be used
+ *
+ * gcc -Wall -Wextra -g3 -save-temps -o ./hello ./hello.c
+ */
+
+
+- The size of binary file will be very huge when it is compiled with '-g3'. Strip the binary using 'strip' command and use '-O3' for gcc's power of optimization effect.
