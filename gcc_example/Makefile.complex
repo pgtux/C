@@ -1,0 +1,31 @@
+######################################################################
+############################## README ################################
+######################################################################
+# Makefile.complex: To explain compiling multiple source files
+#
+# - Function defined in 'other_file.c' added in 'common.h' to make it
+#   visible for 'complex.c'
+# - Complied with single make command with the help of this file
+#
+# - Use 'make -f Makefile.complex' as 'make' looks for file named 
+#   'Makefile'. '-f' switch/option is used to force specific Makefile
+# - Use 'make -f Makefile.complex clean' to remove binaries
+######################################################################
+CC=gcc
+CFLAGS=-Wall -Wextra -g3
+BIN_PATH=./bin
+
+all: complex
+
+complex: other_file.o complex.o
+	$(CC) $(CFLAGS) -o complex other_file.o complex.o
+
+other_file.o: common.h
+	$(CC) $(CFLAGS) -c ./other_file.c 
+
+complex.o: common.h
+	$(CC) $(CFLAGS) -c ./complex.c
+
+
+clean:
+	rm -rf complex.*[!c] complex other_file.*[!c]
