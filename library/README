@@ -43,3 +43,17 @@ ln -fs libcommon.so.1 libcommon.so
 cd ../
 arm-linux-gnueabihf-gcc -Wall -Wextra -L./lib main.c -lcommon -o ./bin/main
 #/* Shared and Dynamic library */
+
+
+## List dependency
+
+## Native environment
+ldd <library name>
+
+## Cross platform
+
+# From host systen
+arm-linux-gnueabihf-ldd --root=<RFS path> <library name>
+
+# In target
+ldd <library name> # ldd is usually not present. Only development system has such utils
