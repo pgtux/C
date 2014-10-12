@@ -1,0 +1,45 @@
+#Description:
+#------------
+- This README explains the static and dynamic library with example
+- Refer relevant document for more details
+
+#/* Static library */
+#Native compilation:
+
+gcc -Wall -Wextra -g3 -c common.c addon.c common.h
+ar -cvq libcommon.a common.o addon.o
+gcc -Wall -Wextra -g3 -o ./bin/main ./main.c -L./ -lcommon
+strip ./bin/main
+
+
+
+#Cross compilation:
+
+arm-linux-gnueabihf-gcc -Wall -Wextra -c common.c addon.c common.h
+arm-linux-gnueabihf-ar -cvq libcommon.a common.o addon.o
+arm-linux-gnueabihf-gcc -Wall -Wextra -g3 -o ./bin/main ./main.c -L./ -lcommon
+arm-linux-gnueabihf-strip ./bin/main
+
+#/* Static library */
+
+#/* Shared and Dynamic library */
+
+#Native compilation
+mkdir lib
+gcc -Wall -Wextra -fPIC -c common.c common.h addon.c
+gcc -shared -Wl,-soname,libcommon.so.1 -o libcommon.so.1.0 common.o addon.o common.h
+cd lib
+ln -fs libcommon.so.1.0 libcommon.so.1
+ln -fs libcommon.so.1 libcommon.so
+cd ../
+gcc -Wall -Wextra -L./ main.c -lcommon -o ./bin/main
+
+#Cross compilation
+arm-linux-gnueabihf-gcc -Wall -Wextra -fPIC -c common.c common.h addon.c
+arm-linux-gnueabihf-gcc -shared -Wl,-soname,libcommon.so.1 -o ./lib/libcommon.so.1.0 common.o addon.o common.h
+cd lib
+ln -fs libcommon.so.1.0 libcommon.so.1
+ln -fs libcommon.so.1 libcommon.so
+cd ../
+arm-linux-gnueabihf-gcc -Wall -Wextra -L./lib main.c -lcommon -o ./bin/main
+#/* Shared and Dynamic library */
